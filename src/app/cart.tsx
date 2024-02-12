@@ -10,10 +10,10 @@ import { Feather } from "@expo/vector-icons";
 import { LinkButton } from "@/components/link-button";
 import { useState } from "react";
 import { useNavigation } from "expo-router";
-import { API_KEY } from "@env";
 
 
 export default function Cart() {
+  const phoneNumber = process.env.EXPO_PUBLICK_API_KEY
   const [address, setAddress] = useState("")
   const cartStore = useCartStore()
   const navigation = useNavigation()
@@ -52,7 +52,7 @@ export default function Cart() {
       \n Valor total: ${total}
     `
 
-    Linking.openURL(`http://api.whatsapp.com/send?phone=${API_KEY}&text=${message}`)
+    Linking.openURL(`http://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`)
     cartStore.clear()
     navigation.goBack()
   }
